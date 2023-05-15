@@ -1,0 +1,19 @@
+.table-line:nth-child(even) {
+    background-color: #cccccc;
+
+}
+
+.required::after{
+    content: "*";
+    color: red;
+}
+
+input{
+    border: #8b8a8a solid 1px;
+    border-radius: 5px;
+    height: 32px;
+    padding: 4px;
+    margin-top: 4px;
+}
+
+

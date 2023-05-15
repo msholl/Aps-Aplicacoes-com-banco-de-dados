@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -12,15 +13,16 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        return view('produtos.index');
+        $produtos = Produto::all();
+        return view('produtos.index')->with('produtos', $produtos);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('produtos.create');
     }
 
     /**
@@ -28,7 +30,14 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = new Produto();
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->preco = $request->preco;
+        $produto->quantidade = $request->quantidade;
+        $produto->save();
+
+        return to_route('produtos.index');
     }
 
     /**
@@ -36,7 +45,8 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produto = Produto::find($id);
+        return view('produtos.show')->with('produto', $produto);
     }
 
     /**
@@ -60,6 +70,9 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $produto = Produto::find($id);
+        $produto->delete();
+
+        return to_route('produtos.index');
     }
 }
