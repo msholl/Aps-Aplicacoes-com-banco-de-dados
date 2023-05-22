@@ -1,5 +1,6 @@
 
 <x-layouts.app>
+
     <h1 class="text-lg font-bold pl-4 bg-gray-200">Produtos</h1>
     <table class="w-[80%] m-auto text-left mt-6">
         <tr class="mb-2 text-lg text-blue-950">
@@ -8,7 +9,9 @@
             <th>Preço</th>
             <th class="text-center">Quantidade</th>
         </tr>
+
         @foreach($produtos as $produto)
+
             <tr class="table-line align-middle leading-6" id="{{$produto->id}}">
                 <td>{{$produto->nome}}</td>
                 <td>{{$produto->descricao}}</td>
